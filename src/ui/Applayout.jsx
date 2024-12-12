@@ -4,7 +4,7 @@ import Header from "./Header";
 function Applayout() {
   // const nav = useNavigate();
   return (
-    <div className="font-poppins">
+    <div className="font-inter">
       {/* <div className="bg-white h-[75px] shadow-md shadow-gray-300 pl-4 flex flex-wrap gap-1 text-xs tab:text-base underline cursor-pointer">
         <p onClick={() => nav("/")}>Home</p>
         <p onClick={() => nav("/investment")}>Investment</p>

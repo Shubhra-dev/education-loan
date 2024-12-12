@@ -1,34 +1,61 @@
-import Hero from "../../assets/Hero.png";
-import Title from "../../components/Title";
+import SectionLayout from "../SectionLayout";
+import FundingCards from "./FundingCards";
+import Hero from "./Hero";
+import OurMission from "./OurMission";
+import WhatWeAchive from "./WhatWeAchive";
+import HandDeposit from "../../icon/HandDeposit";
+import Newspaper from "../../icon/Newspaper";
+import Path from "../../icon/Path";
+import RoundBorderCard from "./RoundBorderCard";
+import Heading1 from "../../components/Heading1";
 import SubHeading from "../../components/SubHeading";
-import PrimaryButton from "../../components/PrimaryButton";
+
 function Home() {
   return (
-    <div className="w-full py-6">
-      <div className="w-5/6 m-auto laptop:w-3/4 flex items-center justify-between">
-        <div className="w-[35%]">
-          <img src={Hero} alt="hero image" />
-        </div>
-        <div className="w-[55%]">
-          <Title color={`text-secondary`} padding={`py-0`}>
-            Fund your education.
-          </Title>
-          <Title color={`text-primary`} padding={`py-0`}>
-            Live your dream.
-          </Title>
+    <>
+      <Hero />
+      <FundingCards />
+      <WhatWeAchive />
+      <OurMission />
+      <SectionLayout>
+        <div className="py-2 sm:py-4 w-full tab:w-5/6 tab:m-auto">
+          <Heading1 align={`text-center leading-tight`} color={`text-primary`}>
+            Supporting you through school
+          </Heading1>
+          <Heading1 align={`text-center`} color={`text-secondary`}>
+            and beyond
+          </Heading1>
           <SubHeading
+            align={`text-center`}
             color={`textColor1`}
-            padding={`py-4`}
             font={`font-normal`}
+            padding={`py-4`}
           >
-            Don&apos;t miss out! Lock in rates as low as 9.99% (10.89% APR)* for
-            the fall 2025 semester with our lightning-fast application. Limited
-            time offer – apply today!
+            There’s more to making your international education journey a
+            success than securing funding. MPOWER offers scholarships and loans
+            along with additional services designed to meet the unique needs of
+            students and graduates like you.
           </SubHeading>
-          <PrimaryButton addedClass={`my-2`}>get started</PrimaryButton>
         </div>
-      </div>
-    </div>
+        <div className="flex flex-col sm:flex-row items-start justify-normal gap-4 tab:gap-8">
+          <RoundBorderCard text={`Get A Loan`} buttonText={`Apply Now`}>
+            <HandDeposit />
+          </RoundBorderCard>
+          <RoundBorderCard
+            text={`Resources and information for students`}
+            buttonText={`Learn More`}
+          >
+            <Newspaper />
+          </RoundBorderCard>
+          <RoundBorderCard
+            text={`Join our career services program exclusive for MPOWER borrowers: Path2Success`}
+            buttonText={`Learn More`}
+          >
+            <Path />
+          </RoundBorderCard>
+        </div>
+      </SectionLayout>
+    </>
   );
 }
 
