@@ -1,0 +1,32 @@
+function Next() {
+  return (
+    <svg
+      width="14"
+      height="14"
+      viewBox="0 0 14 14"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <g id="elements">
+        <path
+          id="Vector 6924"
+          d="M8 13L12.4665 7.64018C12.7216 7.33408 12.8491 7.18102 12.8491 7C12.8491 6.81898 12.7216 6.66592 12.4665 6.35982L8 1"
+          stroke="white"
+          strokeWidth="2"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        />
+        <path
+          id="Vector 6923"
+          d="M1 13L5.46651 7.64018C5.7216 7.33408 5.84915 7.18102 5.84915 7C5.84915 6.81898 5.7216 6.66592 5.46651 6.35982L1 1"
+          stroke="white"
+          strokeWidth="2"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        />
+      </g>
+    </svg>
+  );
+}
+
+export default Next;

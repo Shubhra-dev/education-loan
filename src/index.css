@@ -2,31 +2,36 @@
 @tailwind components;
 @tailwind utilities;
 
-@keyframes slide-in-left {
+/* Slide In From Left */
+@keyframes slideInLeft {
   0% {
+    opacity: 0;
     transform: translateX(-100%);
   }
   100% {
+    opacity: 1;
     transform: translateX(0);
   }
 }
 
-@keyframes slide-in-right {
+/* Slide In From Right */
+@keyframes slideInRight {
   0% {
+    opacity: 0;
     transform: translateX(100%);
   }
   100% {
+    opacity: 1;
     transform: translateX(0);
   }
 }
-
-/* Custom classes for animations */
-.animate-slide-in-left {
-  animation: slide-in-left 0.7s ease-in-out forwards;
+/* Animation Classes */
+.slide-left {
+  animation: slideInLeft 0.5s ease-in-out;
 }
 
-.animate-slide-in-right {
-  animation: slide-in-right 0.7s ease-in-out forwards;
+.slide-right {
+  animation: slideInRight 0.5s ease-in-out;
 }
 
 .react-datepicker-wrapper,
@@ -73,4 +78,19 @@ input[type="range"]::-webkit-slider-thumb {
 .no-scrollbar {
   -ms-overflow-style: none; /* IE and Edge */
   scrollbar-width: none; /* Firefox */
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.fade {
+  animation: fadeIn 0.5s ease-in-out;
 }

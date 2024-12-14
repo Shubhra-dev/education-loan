@@ -1,10 +1,12 @@
 import { useState } from "react";
-import Text from "../../components/Text";
 import SubHeading from "../../components/SubHeading";
 import SmallText from "../../components/SmallText";
-import Quote from "../../icon/Quote";
 import SectionLayout from "../SectionLayout";
-import Title from "../../components/Title";
+import Heading1 from "../../components/Heading1";
+import Quote from "../../icon/Quote";
+import Next from "../../icon/Next";
+import Prev from "../../icon/Prev";
+import TestimoniImage from "../../assets/Testimonial.png";
 
 const testimonials = [
   {
@@ -44,133 +46,103 @@ const testimonials = [
     name: "Abidur Rahman4",
     country: "Bangladesh",
     message:
-      "Tincidunt sem consectetur lorem tempor feugiat suscipit porttitor. Ullamcorper sit amet nam semper pretium.",
+      "Lorem ipsum dolor sit amet consectetur. Laoreet nunc commodo adipiscing condimentum et porta at volutpat. Vitae nunc habitant faucibus magna. Nulla a parturient donec pulvinar libero viverra. Vel id egestas mi feugiat at ac quis magna.",
     avatar: "https://randomuser.me/api/portraits/men/5.jpg",
   },
 ];
 
 const Testimonial = () => {
-  const [currentIndex, setCurrentIndex] = useState(2); // Start with middle slide
-
-  const handleNext = () => {
-    setCurrentIndex((prevIndex) => (prevIndex + 1) % testimonials.length); // Move to next testimonial
-  };
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const [isAnimating, setIsAnimating] = useState(false);
+  const [animationDirection, setAnimationDirection] = useState("right");
 
   const handlePrev = () => {
-    setCurrentIndex((prevIndex) =>
-      prevIndex === 0 ? testimonials.length - 1 : prevIndex - 1
-    ); // Move to previous testimonial
+    triggerAnimation();
+    setTimeout(() => {
+      setCurrentIndex((prevIndex) =>
+        prevIndex === 0 ? testimonials.length - 1 : prevIndex - 1
+      );
+    }, 500); // Match animation duration
+    setAnimationDirection("left"); // Set animation direction
   };
 
-  // Helper function to get the surrounding testimonials (left and right)
-  const getVisibleTestimonials = (index) => {
-    const prevIndex = (index - 1 + testimonials.length) % testimonials.length;
-    const nextIndex = (index + 1) % testimonials.length;
-
-    return {
-      left: testimonials[prevIndex],
-      center: testimonials[index],
-      right: testimonials[nextIndex],
-    };
+  const handleNext = () => {
+    triggerAnimation();
+    setTimeout(() => {
+      setCurrentIndex((prevIndex) =>
+        prevIndex === testimonials.length - 1 ? 0 : prevIndex + 1
+      );
+    }, 500); // Match animation duration
+    setAnimationDirection("right"); // Set animation direction
   };
 
-  const { left, center, right } = getVisibleTestimonials(currentIndex);
+  const triggerAnimation = () => {
+    setIsAnimating(true);
+    setTimeout(() => setIsAnimating(false), 500); // Reset animation after duration
+  };
 
   return (
-    <SectionLayout bg={"bg-gray-100"}>
-      <div className="pt-2 sm:pb-4 ">
-        <Title padding={"py-2 sm:py-6"} align={"text-center"}>
-          Trusted Across Industries
-        </Title>
-
-        <div className="flex justify-center items-center py-6 sm:pt-10 sm:pb-6 w-full gap-1">
-          {/* Previous Button */}
-          <button
-            onClick={handlePrev}
-            className="bg-transparent text-primary sm:text-xl font-bold p-3 rounded-full hover:bg-accent/10 w-[5%] m-auto"
-          >
-            {`<`}
-          </button>
-
-          {/* Testimonial Cards */}
-          <div className="flex justify-center items-center w-full">
-            {/* Left Card */}
-            <div className="w-1/3 hidden sm:block -mr-4">
-              <div className="h-[300px] sm:h-[400px] tab:h-[250px] bg-white text-gray-700 px-10 py-8 rounded-lg shadow-allSide shadow-gray-300 transition-all duration-700">
-                <div className="w-max m-auto pb-3">
-                  <Quote />
-                </div>
-                <Text align={"text-center"} padding={"pb-3"}>
-                  {left.message}
-                </Text>
-              </div>
-              <div className="w-max m-auto -mt-5 z-10">
-                <div className="flex items-center w-max m-auto">
-                  <img
-                    src={left.avatar}
-                    alt={left.name}
-                    className="w-14 h-14 rounded-full"
-                  />
-                </div>
-                <SubHeading align={"text-center"}>{left.name}</SubHeading>
-                <SmallText align={"text-center"}>{left.country}</SmallText>
-              </div>
-            </div>
-
-            {/* Center Card */}
-            <div className="z-10 sm:-mt-16 w-[95%] sm:w-[40%]">
-              <div className=" h-[300px] sm:h-[400px] tab:h-[250px] bg-primary text-white px-10 py-8 rounded-lg shadow-md transition-all duration-700">
-                <div className="w-max m-auto pb-3">
-                  <Quote color={"#4a7c7d"} />
-                </div>
-                <Text align={"text-center"} padding={"pb-3"} color={"white"}>
-                  {center.message}
-                </Text>
-              </div>
-              <div className="w-max m-auto -mt-5 z-10">
-                <div className="flex items-center w-max m-auto">
-                  <img
-                    src={center.avatar}
-                    alt={center.name}
-                    className="w-14 h-14 rounded-full"
-                  />
-                </div>
-                <SubHeading align={"text-center"}>{center.name}</SubHeading>
-                <SmallText align={"text-center"}>{center.country}</SmallText>
+    <SectionLayout>
+      <Heading1
+        color={`primary`}
+        padding={`py-2`}
+        align={`text-center sm:text-left`}
+      >
+        What Our Students say
+      </Heading1>
+      <div className="m-auto sm:m-0 h-1.5 w-[130px] bg-secondary rounded-md py-1"></div>
+      <div className="flex items-center gap-8 h-[270px] sm:h-[250px] tab:h-[280px] mt-3 sm:mt-6">
+        <div className="w-full tab:w-3/5 mt-4 p-3 sm:p-6 bg-[#f5f0ed] rounded-md h-full">
+          <span className="relative inline-block h-[70%]">
+            <span className="absolute left-0 top-0">
+              <Quote />
+            </span>
+            <span
+              className={`ml-12 leading-[1.75] sm:leading-normal text-textColor1 text-left py-1 text-base sm:text-lg tab:text-xl font-normal ${
+                isAnimating ? `slide-${animationDirection}` : ""
+              }`}
+            >
+              {testimonials[currentIndex].message}
+            </span>
+          </span>
+          <div className="flex justify-between items-center mt-4">
+            <div className="flex items-center gap-6">
+              <img
+                src={testimonials[currentIndex].avatar}
+                alt="student photo"
+                className="w-[60px] h-[60px] rounded-full object-center"
+              />
+              <div>
+                <SubHeading padding={`py-0 leading-tight`}>
+                  {testimonials[currentIndex].name}
+                </SubHeading>
+                <SmallText padding={`py-0 leading-tight`}>
+                  {testimonials[currentIndex].country}
+                </SmallText>
               </div>
             </div>
-
-            {/* Right Card */}
-            <div className="hidden sm:block w-1/3 -ml-4">
-              <div className="h-[300px] sm:h-[400px] tab:h-[250px] bg-white text-gray-700 px-10 py-8 rounded-lg shadow-allSide shadow-gray-300 transition-all duration-700">
-                <div className="w-max m-auto pb-3">
-                  <Quote />
-                </div>
-                <Text align={"text-center"} padding={"pb-3"}>
-                  {right.message}
-                </Text>
+            <div className="flex items-center gap-2.5">
+              <div
+                onClick={handlePrev}
+                className="bg-primary py-2 px-2.5 rounded-[5px]"
+              >
+                <Prev />
               </div>
-              <div className="w-max m-auto -mt-5 z-10">
-                <div className="flex items-center w-max m-auto">
-                  <img
-                    src={right.avatar}
-                    alt={right.name}
-                    className="w-14 h-14 rounded-full"
-                  />
-                </div>
-                <SubHeading align={"text-center"}>{right.name}</SubHeading>
-                <SmallText align={"text-center"}>{right.country}</SmallText>
+              <div
+                onClick={handleNext}
+                className="bg-primary py-2 px-2.5 rounded-[5px]"
+              >
+                <Next />
               </div>
             </div>
           </div>
-
-          {/* Next Button */}
-          <button
-            onClick={handleNext}
-            className="bg-transparent  w-[5%] m-auto text-primary sm:text-xl font-bold p-3 rounded-full hover:bg-accent/10"
-          >
-            {`>`}
-          </button>
+        </div>
+        <div className="hidden tab:block tab:w-2/5">
+          <img
+            src={TestimoniImage}
+            alt="Testimonil image"
+            className="object-center"
+          />
         </div>
       </div>
     </SectionLayout>
