@@ -36,7 +36,7 @@ function OurMission() {
             future potential, rather than your past.
           </Text>
           <div className="py-2 w-max m-auto sm:m-0">
-            <AccentButton noIcon={true} rounded={`rounded-full`}>
+            <AccentButton noIcon={true} rounded={`rounded-2xl`}>
               about us
             </AccentButton>
           </div>

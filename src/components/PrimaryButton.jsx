@@ -1,11 +1,19 @@
-function PrimaryButton({ children, width, letterCase, padding, addedClass }) {
+function PrimaryButton({
+  children,
+  width,
+  letterCase,
+  padding,
+  addedClass,
+  bg,
+  textColor,
+}) {
   return (
     <button
       className={`${
         letterCase ? `${letterCase}` : "capitalize"
-      } flex gap-2 items-center ${
-        padding ? padding : "py-3 px-10"
-      } text-white bg-gradient-to-t from-secondary to-primary ${
+      } flex gap-2 items-center ${padding ? padding : "py-3 px-10"} ${
+        textColor ? textColor : "text-white"
+      } ${bg ? bg : "bg-gradient-to-t from-secondary to-primary"} ${
         width ? `${width}` : ""
       } rounded-[20px] text-sm sm:text-15[px] tab:text-base font-semibold ${
         addedClass ? `${addedClass}` : ""

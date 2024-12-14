@@ -14,6 +14,10 @@ const Header = () => {
       name: "Home",
       path: "/",
     },
+    {
+      name: "Schools",
+      path: "/supported-schools",
+    },
   ];
 
   const handleSubMenuToggle = (index) => {
@@ -29,7 +33,7 @@ const Header = () => {
             className="flex-shrink-0 cursor-pointer"
             onClick={() => nav("/")}
           >
-            <h1 className="text-xl font-bold text-primary">P2P Medical</h1>
+            <h1 className="text-xl font-bold text-primary">P2P Eduation</h1>
           </div>
 
           {/* Desktop Menu */}
