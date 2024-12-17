@@ -54,7 +54,7 @@ const TableComponent = () => {
           Search our list of eligible schools.
         </SubHeading>
 
-        <div className="flex flex-col sm:flex-row justify-between items-center my-4 gap-4">
+        <div className="flex flex-row justify-between items-center my-4 gap-4">
           <div className="flex items-center gap-2">
             <select
               id="entries"
@@ -160,7 +160,7 @@ const TableComponent = () => {
               <ArrowRight />
             </div>
           </div>
-          <div>
+          <div className="hidden tab:block">
             <Text
               color={`secondary underline cursor-pointer`}
               font={`font-semibold`}
@@ -169,8 +169,17 @@ const TableComponent = () => {
             </Text>
           </div>
         </div>
+        <div className="tab:hidden pt-2">
+          <Text
+            color={`secondary underline cursor-pointer`}
+            font={`font-semibold`}
+            align={`text-center`}
+          >
+            Download list of supported school
+          </Text>
+        </div>
       </div>
-      <div className="w-max m-auto mt-2">
+      <div className="w-max m-auto tab:mt-2">
         <PrimaryButton addedClass={`my-2 m-auto sm:m-0`}>
           apply now
         </PrimaryButton>

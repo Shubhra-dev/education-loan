@@ -63,9 +63,11 @@ const FAQContainer = ({ bg, color }) => {
             onClick={() => handleToggle(index)}
           >
             {activeIndex === index ? (
-              <Text color={`${color ? color : "white"}`}>{item.question}</Text>
+              <Text color={`${color ? color : "white"}`} font={`font-semibold`}>
+                {item.question}
+              </Text>
             ) : (
-              <Text>{item.question}</Text>
+              <Text font={`font-semibold`}>{item.question}</Text>
             )}
             <span className="text-2xl pl-2">
               {activeIndex === index ? "−" : "+"}

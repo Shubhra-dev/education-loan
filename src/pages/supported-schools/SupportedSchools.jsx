@@ -3,10 +3,12 @@ import GlobalJourney from "./GlobalJourney";
 import SupportedDegree from "./SupportedDegree";
 import SchoolsTable from "./SchoolsTable";
 import SupportedSchoolsHero from "./SupportedSchoolsHero";
+import ApplyForListing from "./ApplyForListing";
+import Testimonial from "../../ui/Home/Testimonial";
+import FAQContainer from "../../ui/Home/FAQContainer";
 import SectionLayout from "../../ui/SectionLayout";
-import Title from "../../components/Title";
-import PrimaryButton from "../../components/PrimaryButton";
-import Listed from "../../assets/Listed.png";
+import Heading1 from "../../components/Heading1";
+import SubHeading from "../../components/SubHeading";
 
 function SupportedSchools() {
   return (
@@ -16,19 +18,22 @@ function SupportedSchools() {
       <SupportedDegree />
       <EligibleList />
       <SchoolsTable />
-      <SectionLayout bg={`bg-secondary/20`}>
-        <div className="py-4 flex justify-between items-center">
-          <div className="w-[40%]">
-            <Title color={`text-primary`}>See your school listed?</Title>
-            <div className="w-max mt-4">
-              <PrimaryButton addedClass={`my-2 m-auto sm:m-0`}>
-                start my application
-              </PrimaryButton>
-            </div>
-          </div>
-          <div className="w-[40%]">
-            <img src={Listed} alt="illustration big ben" />
-          </div>
+      <ApplyForListing />
+      <Testimonial />
+      <SectionLayout>
+        <div className="py-2 sm:py-4">
+          <Heading1 color={`textColor1`} align={`text-center`}>
+            Questions? We’re here to help
+          </Heading1>
+          <SubHeading
+            color={`textColor1`}
+            align={`text-center`}
+            font={`font-normal`}
+            padding={`pt-1 pb-8`}
+          >
+            Read our Frequently Asked Questions (FAQ) here:
+          </SubHeading>
+          <FAQContainer bg={`bg-secondary/10`} color={`textColor1`} />
         </div>
       </SectionLayout>
     </>

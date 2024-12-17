@@ -83,66 +83,68 @@ const Testimonial = () => {
 
   return (
     <SectionLayout>
-      <Heading1
-        color={`primary`}
-        padding={`py-2`}
-        align={`text-center sm:text-left`}
-      >
-        What Our Students say
-      </Heading1>
-      <div className="m-auto sm:m-0 h-1.5 w-[130px] bg-secondary rounded-md py-1"></div>
-      <div className="flex items-center gap-8 h-[270px] sm:h-[250px] tab:h-[280px] mt-3 sm:mt-6">
-        <div className="w-full tab:w-3/5 mt-4 p-3 sm:p-6 bg-[#f5f0ed] rounded-md h-full">
-          <span className="relative inline-block h-[70%]">
-            <span className="absolute left-0 top-0">
-              <Quote />
-            </span>
-            <span
-              className={`ml-12 leading-[1.75] sm:leading-normal text-textColor1 text-left py-1 text-base sm:text-lg tab:text-xl font-normal ${
-                isAnimating ? `slide-${animationDirection}` : ""
-              }`}
-            >
-              {testimonials[currentIndex].message}
-            </span>
-          </span>
-          <div className="flex justify-between items-center mt-4">
-            <div className="flex items-center gap-6">
-              <img
-                src={testimonials[currentIndex].avatar}
-                alt="student photo"
-                className="w-[60px] h-[60px] rounded-full object-center"
-              />
-              <div>
-                <SubHeading padding={`py-0 leading-tight`}>
-                  {testimonials[currentIndex].name}
-                </SubHeading>
-                <SmallText padding={`py-0 leading-tight`}>
-                  {testimonials[currentIndex].country}
-                </SmallText>
-              </div>
-            </div>
-            <div className="flex items-center gap-2.5">
-              <div
-                onClick={handlePrev}
-                className="bg-primary py-2 px-2.5 rounded-[5px]"
+      <div className="py-2 sm:py-4">
+        <Heading1
+          color={`primary`}
+          padding={`py-2`}
+          align={`text-center sm:text-left`}
+        >
+          What Our Students say
+        </Heading1>
+        <div className="m-auto sm:m-0 h-1.5 w-[130px] bg-secondary rounded-md py-1"></div>
+        <div className="flex items-center gap-8 h-[270px] sm:h-[250px] tab:h-[280px] mt-3 sm:mt-6">
+          <div className="w-full tab:w-3/5 mt-4 p-3 sm:p-6 bg-[#f5f0ed] rounded-md h-full">
+            <span className="relative inline-block h-[70%]">
+              <span className="absolute left-0 top-0">
+                <Quote />
+              </span>
+              <span
+                className={`ml-12 leading-[1.75] sm:leading-normal text-textColor1 text-left py-1 text-base sm:text-lg tab:text-xl font-normal ${
+                  isAnimating ? `slide-${animationDirection}` : ""
+                }`}
               >
-                <Prev />
+                {testimonials[currentIndex].message}
+              </span>
+            </span>
+            <div className="flex justify-between items-center mt-4">
+              <div className="flex items-center gap-6">
+                <img
+                  src={testimonials[currentIndex].avatar}
+                  alt="student photo"
+                  className="w-[60px] h-[60px] rounded-full object-center"
+                />
+                <div>
+                  <SubHeading padding={`py-0 leading-tight`}>
+                    {testimonials[currentIndex].name}
+                  </SubHeading>
+                  <SmallText padding={`py-0 leading-tight`}>
+                    {testimonials[currentIndex].country}
+                  </SmallText>
+                </div>
               </div>
-              <div
-                onClick={handleNext}
-                className="bg-primary py-2 px-2.5 rounded-[5px]"
-              >
-                <Next />
+              <div className="flex items-center gap-2.5">
+                <div
+                  onClick={handlePrev}
+                  className="bg-primary py-2 px-2.5 rounded-[5px]"
+                >
+                  <Prev />
+                </div>
+                <div
+                  onClick={handleNext}
+                  className="bg-primary py-2 px-2.5 rounded-[5px]"
+                >
+                  <Next />
+                </div>
               </div>
             </div>
           </div>
-        </div>
-        <div className="hidden tab:block tab:w-2/5">
-          <img
-            src={TestimoniImage}
-            alt="Testimonil image"
-            className="object-center"
-          />
+          <div className="hidden tab:block tab:w-2/5">
+            <img
+              src={TestimoniImage}
+              alt="Testimonil image"
+              className="object-center"
+            />
+          </div>
         </div>
       </div>
     </SectionLayout>
