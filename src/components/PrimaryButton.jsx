@@ -11,7 +11,7 @@ function PrimaryButton({
     <button
       className={`${
         letterCase ? `${letterCase}` : "capitalize"
-      } flex gap-2 items-center ${padding ? padding : "py-3 px-10"} ${
+      } flex gap-2 items-center ${padding ? padding : "py-3 px-12"} ${
         textColor ? textColor : "text-white"
       } ${bg ? bg : "bg-gradient-to-t from-secondary to-primary"} ${
         width ? `${width}` : ""

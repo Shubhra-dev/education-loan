@@ -18,6 +18,10 @@ const Header = () => {
       name: "Schools",
       path: "/supported-schools",
     },
+    {
+      name: "Refer a Friend",
+      path: "/referrals",
+    },
   ];
 
   const handleSubMenuToggle = (index) => {

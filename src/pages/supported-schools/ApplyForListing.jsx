@@ -10,7 +10,7 @@ function ApplyForListing() {
           <Title color={`text-primary`} align={`text-center sm:text-left`}>
             See your school listed?
           </Title>
-          <div className="w-max m-auto sm:m-0 mt-4">
+          <div className="w-max m-auto sm:m-0 sm:mt-4">
             <PrimaryButton addedClass={`my-2 m-auto sm:m-0`}>
               start my application
             </PrimaryButton>
