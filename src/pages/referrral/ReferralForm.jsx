@@ -5,7 +5,7 @@ import PrimaryButton from "../../components/PrimaryButton";
 function ReferralForm() {
   return (
     <div
-      className={`w-full rounded-[30px] py-4`}
+      className={`w-full rounded-[30px] py-4 bg-cover`}
       style={{ backgroundImage: `url(${Gradient102})` }}
     >
       <div
