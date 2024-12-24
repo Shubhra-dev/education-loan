@@ -84,12 +84,24 @@ const Header = () => {
                     <h6 className="text-xs text-textColor3">Call Now !</h6>
                   </div>
                 </div>
-                <button className="flex items-center gap-2 uppercase px-6 py-2 bg-secondary rounded-md">
-                  <Text font={`font-semibold `} color={`white`}>
-                    login
-                  </Text>
-                  <FiLogIn className="text-white text-xl" />
-                </button>
+                {!user.isLoggedIn && (
+                  <button className="flex items-center gap-2 uppercase px-6 py-2 bg-secondary rounded-md">
+                    <Text font={`font-semibold `} color={`white`}>
+                      login
+                    </Text>
+                    <FiLogIn className="text-white text-xl" />
+                  </button>
+                )}
+                {user.isLoggedIn && (
+                  <div className="flex items-center gap-2 cursor-pointer border border-gray-300 rounded-md p-1 hover hover:bg-secondary/20">
+                    <img
+                      src="https://www.admin-p2p.alzakati.com/assets/images/avator.png"
+                      alt="profile image"
+                      className="w-10 h-10 rounded-full object-center"
+                    />
+                    <Text>{user.userName}</Text>
+                  </div>
+                )}
               </div>
             </div>
           </div>
@@ -154,9 +166,29 @@ const Header = () => {
             </button>
           </div>
           <img src={Logo} alt="logo" />
+          {!user.isLoggedIn && (
+            <button className="flex items-center gap-2 uppercase px-6 py-2 bg-secondary rounded-md">
+              <Text font={`font-semibold `} color={`white`}>
+                login
+              </Text>
+              <FiLogIn className="text-white text-xl" />
+            </button>
+          )}
+          {user.isLoggedIn && (
+            <div className="flex items-center gap-2 cursor-pointer border border-gray-300 rounded-md p-1 hover hover:bg-secondary/20">
+              <img
+                src="https://www.admin-p2p.alzakati.com/assets/images/avator.png"
+                alt="profile image"
+                className="w-10 h-10 rounded-full object-center"
+              />
+              <Text color={`primary`} font={`font-semibold`}>
+                {user.userName}
+              </Text>
+            </div>
+          )}
         </div>
         {isMobileMenuOpen && (
-          <div className="md:hidden mt-2 space-y-2 border-b-2 border-primary fixed top-[55px] w-1/2 h-screen bg-white">
+          <div className="tab:hidden mt-2 sm:pt-4 space-y-2 border-b-2 border-primary fixed top-[55px] w-1/2 h-screen bg-white">
             {menuItems.map((menu, index) => (
               <div key={index} className="space-y-1">
                 {/* Toggle only sub-menu open/close on mobile */}
