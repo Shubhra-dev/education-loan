@@ -4,10 +4,12 @@ import useAutoLogout from "./useAutoLogOut";
 import Home from "./ui/Home/Home";
 import SupportedSchools from "./pages/supported-schools/SupportedSchools";
 import Referral from "./pages/referrral/Referral";
+import Error from "./ui/Error";
 
 const router = createBrowserRouter([
   {
     element: <Applayout />,
+    errorElement: <Error />,
     children: [
       {
         path: "/",
