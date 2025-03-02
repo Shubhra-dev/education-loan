@@ -40,15 +40,19 @@ const Header = () => {
       name: "Refer a Friend",
       path: "/referrals",
     },
+    {
+      name: "Learn More",
+      path: "/learn-more",
+    },
   ];
 
-  const handleSubMenuToggle = (index) => {
-    setActiveSubMenu(activeSubMenu === index ? null : index);
-  };
+  // const handleSubMenuToggle = (index) => {
+  //   setActiveSubMenu(activeSubMenu === index ? null : index);
+  // };
 
   return (
     <header className="">
-      <nav className="my-2">
+      <nav className="sm:my-2">
         <div className="hidden tab:block">
           <div className="w-full">
             <div className="flex justify-between smLap:w-10/12 laptop:w-9/12 m-auto">
@@ -140,7 +144,7 @@ const Header = () => {
         <div
           className={`tab:hidden flex items-center justify-between px-2 shadow-md py-2 ${
             stickyMenu
-              ? "fixed shadow-md top-0 w-full bg-white z-50"
+              ? "fixed shadow-md w-full bg-white z-50 mt-0"
               : "-top-[65px] mt-2"
           } transition-top duration-500 ease-in-out`}
         >
@@ -188,14 +192,15 @@ const Header = () => {
           )}
         </div>
         {isMobileMenuOpen && (
-          <div className="tab:hidden mt-2 sm:pt-4 space-y-2 border-b-2 border-primary fixed top-[55px] w-1/2 h-screen bg-white">
+          <div className="tab:hidden mt-2 sm:pt-4 pr-6 space-y-2 border-b-2 border-primary fixed top-[65px] w-1/2 h-screen bg-white z-50">
             {menuItems.map((menu, index) => (
               <div key={index} className="space-y-1">
                 {/* Toggle only sub-menu open/close on mobile */}
                 <button
                   className="w-full text-left px-4 py-2 bg-gray-100 rounded-md text-sm font-medium"
                   onClick={() => {
-                    handleSubMenuToggle(index);
+                    setIsMobileMenuOpen(false);
+                    nav(menu.path);
                   }}
                 >
                   {menu.name}
