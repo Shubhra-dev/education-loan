@@ -4,20 +4,17 @@ import Text from "../../components/Text";
 function WhoEligible() {
   return (
     <div className={`w-full bg-white`}>
-      <div
-        className={`px-4 smLap:px-0 smLap:w-10/12 laptop:w-[85%]
-        }`}
-      >
-        <div className="my-[100px] bg-primary py-6 pl-[13%] flex justify-between items-center">
-          <div className="w-[40%]">
+      <div className={`smLap:px-0 smLap:w-[87%]`}>
+        <div className="px-4 tab:px-0 my-14 tab:my-[100px] bg-primary py-6 tab:pl-[12%] tab:pr-4 flex justify-between items-center">
+          <div className="hidden tab:block tab:w-[40%]">
             <img
               src={EligibleFunding}
               alt="Eligible Funding Illustration"
               className="-mb-[110px]"
             />
           </div>
-          <div className="w-[40%] p-2">
-            <div className="bg-[#f5f0ed] px-4 py-3 w-2/3 -mt-20">
+          <div className="w-full tab:w-[40%] p-2">
+            <div className="bg-[#f5f0ed] px-4 py-3 laptop:w-2/3 -mt-20">
               <Heading1
                 align={`text-left leading-tight`}
                 color={`text-primary`}
