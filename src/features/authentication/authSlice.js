@@ -22,9 +22,9 @@ const loadStateFromLocalStorage = () => {
 
   // Return default state if session is invalid or expired
   return {
-    isLoggedIn: true,
+    isLoggedIn: false,
     userToken: "",
-    userName: "Shuvro",
+    userName: "",
     inTime: "",
   };
 };

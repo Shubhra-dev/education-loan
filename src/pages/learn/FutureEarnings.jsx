@@ -26,7 +26,7 @@ function FutureEarnings() {
       </SubHeading>
       <div className="flex flex-wrap item-center justify-center pt-4 gap-6">
         <LearnCard image={LowRates} title={"Rely on low rates and high limits"}>
-          <ul className="w-full list-disc px-2 pt-2 text-sm sm:text-base">
+          <ul className="w-full list-inside list-disc px-2 pt-2 text-sm sm:text-base">
             <li>Loans from US$2,001 to US$100,000</li>
             <li>
               Fixed and competitive interest rates that will never increase
@@ -38,14 +38,14 @@ function FutureEarnings() {
           </ul>
         </LearnCard>
         <LearnCard image={FitLife} title={"Loans that fit your life"}>
-          <ul className="w-full list-disc px-2 pt-2 text-base">
+          <ul className="w-full list-inside list-disc px-2 pt-2 text-base">
             <li>Quick conditional loan offer</li>
             <li>No prepayment penalty</li>
             <li>Students supported at 400+ U.S. and Canadian schools</li>
           </ul>
         </LearnCard>
         <LearnCard image={Benifits} title={"Benefits to help you succeed"}>
-          <ul className="w-full list-disc px-2 pt-2 text-base">
+          <ul className="w-full list-inside list-disc px-2 pt-2 text-base">
             <li>A free visa support letter and visa prep course</li>
             <li>
               A job search tool, resume builder and F-1 eligible job directory

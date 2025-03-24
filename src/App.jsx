@@ -6,6 +6,8 @@ import SupportedSchools from "./pages/supported-schools/SupportedSchools";
 import Referral from "./pages/referrral/Referral";
 import Error from "./ui/Error";
 import LearnMore from "./pages/learn/LearnMore";
+import LogIn from "./pages/login/LogIn";
+import Registration from "./pages/login/Registration";
 
 const router = createBrowserRouter([
   {
@@ -29,6 +31,16 @@ const router = createBrowserRouter([
         element: <LearnMore />,
       },
     ],
+  },
+  {
+    path: "/auth/login",
+    element: <LogIn />,
+    errorElement: <Error />,
+  },
+  {
+    path: "/auth/registration",
+    element: <Registration />,
+    errorElement: <Error />,
   },
 ]);
 function App() {

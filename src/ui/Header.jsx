@@ -89,7 +89,10 @@ const Header = () => {
                   </div>
                 </div>
                 {!user.isLoggedIn && (
-                  <button className="flex items-center gap-2 uppercase px-6 py-2 bg-secondary rounded-md">
+                  <button
+                    onClick={() => nav("/auth/login")}
+                    className="flex items-center gap-2 uppercase px-6 py-2 bg-secondary rounded-md"
+                  >
                     <Text font={`font-semibold `} color={`white`}>
                       login
                     </Text>
