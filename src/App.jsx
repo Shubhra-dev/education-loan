@@ -8,6 +8,7 @@ import Error from "./ui/Error";
 import LearnMore from "./pages/learn/LearnMore";
 import LogIn from "./pages/login/LogIn";
 import Registration from "./pages/login/Registration";
+import CheckYourRate from "./pages/check-your-rate/CheckYourRate";
 
 const router = createBrowserRouter([
   {
@@ -35,6 +36,11 @@ const router = createBrowserRouter([
   {
     path: "/auth/login",
     element: <LogIn />,
+    errorElement: <Error />,
+  },
+  {
+    path: "/check-your-rate",
+    element: <CheckYourRate />,
     errorElement: <Error />,
   },
   {

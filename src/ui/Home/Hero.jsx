@@ -2,7 +2,9 @@ import HeroImg from "../../assets/Hero.png";
 import Title from "../../components/Title";
 import SubHeading from "../../components/SubHeading";
 import PrimaryButton from "../../components/PrimaryButton";
+import { useNavigate } from "react-router-dom";
 function Hero() {
+  const navigate = useNavigate();
   return (
     <div className="w-full py-6">
       <div className="w-full px-6 sm:px-4 tab:px-0 tab:w-5/6 m-auto laptop:w-3/4 flex flex-wrap sm:flex-nowrap items-center justify-between">
@@ -34,7 +36,10 @@ function Hero() {
             the fall 2025 semester with our lightning-fast application. Limited
             time offer – apply today!
           </SubHeading>
-          <PrimaryButton addedClass={`my-2 m-auto sm:m-0`}>
+          <PrimaryButton
+            onClick={() => navigate("/check-your-rate")}
+            addedClass={`my-2 m-auto sm:m-0`}
+          >
             get started
           </PrimaryButton>
         </div>

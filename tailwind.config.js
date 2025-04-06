@@ -24,12 +24,14 @@ export default {
       fontFamily: {
         poppins: ["Poppins", "sans-serif"],
         inter: ["Inter", "sans-serif"],
+        argine: ["Argine", "sans-serif"],
+        rage: ["Rage Italic", "sans-serif"],
       },
       boxShadow: {
         allSide: "0 0 10px 5px rgba(0, 0, 0, 0.5)", // Example custom shadow
       },
       screens: {
-        tab: "770px",
+        tab: "811px",
         smLap: "1025px",
         laptop: "1285px",
       },

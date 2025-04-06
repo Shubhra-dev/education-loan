@@ -1,4 +1,5 @@
 function PrimaryButton({
+  onClick,
   children,
   width,
   letterCase,
@@ -9,6 +10,7 @@ function PrimaryButton({
 }) {
   return (
     <button
+      onClick={onClick ? onClick : () => {}}
       className={`${
         letterCase ? `${letterCase}` : "capitalize"
       } flex gap-2 items-center ${padding ? padding : "py-3 px-12"} ${

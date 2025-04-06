@@ -3,6 +3,13 @@
 @tailwind utilities;
 
 /* Slide In From Left */
+@font-face {
+  font-family: "Argine";
+  src: url("/fonts/Argine.woff") format("truetype");
+  font-style: normal;
+  font-weight: normal;
+}
+
 @keyframes slideInLeft {
   0% {
     opacity: 0;
