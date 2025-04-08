@@ -5,20 +5,22 @@ myHeaders.append("Accept", "application/json");
 myHeaders.append("Content-Type", "application/json");
 
 export async function userPhoneNumberCheck(phone) {
-  console.log(phone);
+  const body = JSON.stringify({
+    mobile_number: phone,
+  });
   const requestOptions = {
     method: "POST",
     headers: myHeaders,
+    body: body,
     redirect: "follow",
   };
 
   try {
     const response = await fetch(
-      `https://admin-p2p.alzakati.com/api/client-panel/registration-step-1?mobile_number=${phone}`,
+      "https://admin.ed.abidurrahman.com/api/client-panel/registration-step-1",
       requestOptions
     );
 
-    // Check if the response status is 409
     if (response.status === 409 || response.ok) {
       const data = await response.json();
       return data;
@@ -31,14 +33,11 @@ export async function userPhoneNumberCheck(phone) {
   }
 }
 
-// api.js
-
 export const loginRequest = async (emailOrMobile, password) => {
   const body = JSON.stringify({
     email_or_mobile_number: emailOrMobile,
     password: password,
   });
-  console.log(emailOrMobile, password);
   const requestOptions = {
     method: "POST",
     headers: myHeaders,
@@ -48,14 +47,13 @@ export const loginRequest = async (emailOrMobile, password) => {
 
   try {
     const response = await fetch(
-      "https://admin-p2p.alzakati.com/api/client-panel/login",
+      "https://admin.ed.abidurrahman.com/api/client-panel/login",
       requestOptions
     );
     if (!response.ok) {
       throw new Error("Network response was not ok " + response.statusText);
     }
     const result = await response.json();
-    console.log(result.result.token);
     return result;
   } catch (error) {
     console.error("Login request failed:", error);
@@ -104,7 +102,7 @@ export const otpVerify = async (mobileNumber, otpCode) => {
 
   try {
     const response = await fetch(
-      "https://admin-p2p.alzakati.com/api/client-panel/registration-step-2",
+      "https://admin.ed.abidurrahman.com/api/client-panel/registration-step-2",
       requestOptions
     );
     if (!response.ok) {
@@ -122,7 +120,6 @@ export const registrationRequest = async (userData) => {
     ...userData,
     date_of_birth: formatDateToYYYYMMDD(userData.date_of_birth),
   });
-  console.log(body);
 
   const requestOptions = {
     method: "POST",
@@ -133,11 +130,10 @@ export const registrationRequest = async (userData) => {
 
   try {
     const response = await fetch(
-      "https://admin-p2p.alzakati.com/api/client-panel/registration-step-3",
+      "https://admin.ed.abidurrahman.com/api/client-panel/registration-step-3",
       requestOptions
     );
     const result = await response.json();
-    console.log(result);
     return result;
   } catch (error) {
     console.log(error);

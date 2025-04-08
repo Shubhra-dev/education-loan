@@ -119,7 +119,7 @@ function RegistrationStepTwo({ setPage, data }) {
         </button>
         <button
           onClick={handleOtpVerify}
-          className={`bg-gradient-to-r from-[#0D5152] to-[#1DB6B8] uppercase text-white text-base sm:text-lg tab:text-xl font-bold tracking-[4px]  py-2.5 rounded-[10px] w-1/2`}
+          className={`bg-gradient-to-r from-primary to-secondary uppercase text-white text-base sm:text-lg tab:text-xl font-bold tracking-[4px]  py-2.5 rounded-[10px] w-1/2`}
         >
           Next Step
         </button>

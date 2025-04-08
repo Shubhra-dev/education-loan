@@ -1,6 +1,6 @@
 import SideBg from "../../assets/logInBg.jpeg";
 import Logo from "../../assets/BlackLogo.png";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { RiEyeCloseLine, RiEyeLine, RiLockPasswordLine } from "react-icons/ri";
 import { BiEnvelope } from "react-icons/bi";
@@ -15,24 +15,24 @@ import { logIn } from "../../features/authentication/authSlice";
 function LogIn() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const location = useLocation();
+  const from = location.state?.from?.pathname || "/dashboard";
   const [password, setPassword] = useState("");
   const [emailOrPhone, setEmailOrPhone] = useState("");
   const [floatingNote, setFloatingNote] = useState({ state: false, msg: "" });
   const [see, setSee] = useState(false);
   const handleLogin = async () => {
-    // console.log(password);
     try {
       const response = await loginRequest(emailOrPhone, password);
 
       if (response && response.success) {
-        // Dispatch the logIn action with the user data
         dispatch(
           logIn({
             name: response.result.client.first_name,
             token: response.result.token,
           })
         );
-        navigate(-1);
+        navigate(from, { replace: true });
       } else {
         setFloatingNote({
           state: true,
@@ -47,10 +47,11 @@ function LogIn() {
       console.error("Error:", err);
     }
   };
+
   return (
     <div className="sm:h-screen w-full flex items-center">
       <div className="w-full px-4 sm:px-0 sm:w-[60%] h-full">
-        <div className="flex  h-[85%] w-full items-center">
+        <div className="flex h-[85%] w-full items-center">
           <div className="w-full pt-2">
             <img
               src={Logo}
@@ -99,11 +100,17 @@ function LogIn() {
                 className="absolute right-2 top-[35%] w-max"
                 onClick={() => setSee(!see)}
               >
-                {see && <RiEyeLine className="text-xl" />}
-                {!see && <RiEyeCloseLine className="text-xl" />}
+                {see ? (
+                  <RiEyeLine className="text-xl" />
+                ) : (
+                  <RiEyeCloseLine className="text-xl" />
+                )}
               </div>
             </div>
-            <div className="cursor-pointer flex gap-1 items-center justify-end w-full sm:w-3/4 tab:w-1/2 m-auto">
+            <div
+              onClick={() => navigate("/auth/forgot-password")}
+              className="cursor-pointer flex gap-1 items-center justify-end w-full sm:w-3/4 tab:w-1/2 m-auto"
+            >
               <HiLockClosed className="text-textColor3" />
               <Text color={`textColor3`}>Forgot Password</Text>
             </div>
@@ -115,7 +122,7 @@ function LogIn() {
             <div className="pt-2 w-max m-auto">
               <button
                 onClick={handleLogin}
-                className={`bg-gradient-to-r from-[#0D5152] to-[#1DB6B8] uppercase text-white tab:text-xl font-bold tracking-[4px]  py-2.5 px-[80px] rounded-[10px]`}
+                className={`bg-gradient-to-r from-primary to-secondary uppercase text-white tab:text-xl font-bold tracking-[4px]  py-2.5 px-[80px] rounded-[10px]`}
               >
                 Login
               </button>

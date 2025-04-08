@@ -9,46 +9,69 @@ import LearnMore from "./pages/learn/LearnMore";
 import LogIn from "./pages/login/LogIn";
 import Registration from "./pages/login/Registration";
 import CheckYourRate from "./pages/check-your-rate/CheckYourRate";
+import ForgotPassword from "./pages/forgot-password/ForgotPassword";
+import PrivateRoute from "./PrivateRoute";
 
-const router = createBrowserRouter([
+const router = createBrowserRouter(
+  [
+    {
+      element: <Applayout />,
+      errorElement: <Error />,
+      children: [
+        {
+          path: "/",
+          element: <Home />,
+        },
+        {
+          path: "/supported-schools",
+          element: <SupportedSchools />,
+        },
+        {
+          path: "/referrals",
+          element: <Referral />,
+        },
+        {
+          path: "/learn-more",
+          element: <LearnMore />,
+        },
+      ],
+    },
+    {
+      path: "/auth/login",
+      element: <LogIn />,
+      errorElement: <Error />,
+    },
+    {
+      path: "/check-your-rate",
+      element: (
+        <PrivateRoute>
+          <CheckYourRate />
+        </PrivateRoute>
+      ),
+      errorElement: <Error />,
+    },
+    {
+      path: "/auth/registration",
+      element: <Registration />,
+      errorElement: <Error />,
+    },
+    {
+      path: "/auth/forgot-password",
+      element: <ForgotPassword />,
+      errorElement: <Error />,
+    },
+  ],
   {
-    element: <Applayout />,
-    errorElement: <Error />,
-    children: [
-      {
-        path: "/",
-        element: <Home />,
-      },
-      {
-        path: "/supported-schools",
-        element: <SupportedSchools />,
-      },
-      {
-        path: "/referrals",
-        element: <Referral />,
-      },
-      {
-        path: "/learn-more",
-        element: <LearnMore />,
-      },
-    ],
-  },
-  {
-    path: "/auth/login",
-    element: <LogIn />,
-    errorElement: <Error />,
-  },
-  {
-    path: "/check-your-rate",
-    element: <CheckYourRate />,
-    errorElement: <Error />,
-  },
-  {
-    path: "/auth/registration",
-    element: <Registration />,
-    errorElement: <Error />,
-  },
-]);
+    future: {
+      v7_skipActionErrorRevalidation: true,
+      v7_startTransition: true,
+      v7_partialHydration: true,
+      v7_normalizeFormMethod: true,
+      v7_fetcherPersist: true,
+      v7_relativeSplatPath: true,
+    },
+  }
+);
 function App() {
   useAutoLogout();
   return <RouterProvider router={router} />;

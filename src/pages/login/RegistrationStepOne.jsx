@@ -36,7 +36,7 @@ function RegistrationStepOne({ setPage, data, setData }) {
       }
     };
     checkPhoneNumber();
-  }, [isSubmitted, isValid]);
+  }, [data.mobile_number, setPage, isSubmitted, isValid]);
   function checkFilling() {
     if (
       data.first_name === "" ||
@@ -142,7 +142,7 @@ function RegistrationStepOne({ setPage, data, setData }) {
       <div className="pt-[40px] w-full m-auto">
         <button
           onClick={handleSubmit}
-          className={`bg-gradient-to-r from-[#0D5152] to-[#1DB6B8] uppercase text-white tab:text-xl font-bold tracking-[4px]  py-2.5 px-[80px] rounded-[10px] w-full`}
+          className={`bg-gradient-to-r from-primary to-secondary uppercase text-white tab:text-xl font-bold tracking-[4px]  py-2.5 px-[80px] rounded-[10px] w-full`}
         >
           Next Step
         </button>
