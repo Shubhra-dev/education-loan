@@ -3,7 +3,12 @@ import NotEligibleHat from "../../assets/NotEligibleHat.png";
 import Text from "../../components/Text";
 import Heading2 from "../../components/Heading2";
 import SubHeading from "../../components/SubHeading";
-function RejectedScreen({ setActive, setPortfolio, initialState }) {
+function RejectedScreen({
+  setActive,
+  setPortfolio,
+  initialState,
+  rejectedState,
+}) {
   const handleStartNewCheck = () => {
     setPortfolio(initialState);
     setActive(1);
@@ -23,23 +28,20 @@ function RejectedScreen({ setActive, setPortfolio, initialState }) {
         </div>
         <div>
           <h1 className="py-1 text-center text-accent text-2xl sm:text-3xl tab:text-4xl font-semibold font-poppins ">
-            Sorry, Not Eligible at This time
+            {rejectedState.title}
           </h1>
 
           <Text align={`text-center`} font={`font-semibold`}>
-            Based on the information provided, you’re not eligible for our
-            standard education loans at this time. Here is a option that might
-            help:
+            {rejectedState.text}
           </Text>
         </div>
         <div className="mt-4 rounded-md bg-white p-5">
           <Heading2 color={`text-accent`} align={`text-center `}>
-            Speak with our Loan Advisor
+            {rejectedState.suggestion_title}
           </Heading2>
 
           <Text color={`textColor3`} align={`text-center`} padding={`py-4`}>
-            Our loan advisor can provide personalized guidance for your
-            situation. Mail us for a schedule conlustation.
+            {rejectedState.suggestion_text}
           </Text>
 
           <button className="w-full bg-gradient-to-r from-[#FF6B00] to-[#803600] rounded-md mt-4">

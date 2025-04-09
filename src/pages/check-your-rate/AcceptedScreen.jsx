@@ -3,7 +3,12 @@ import Congrats from "../../assets/Congrats.png";
 import Text from "../../components/Text";
 import Heading2 from "../../components/Heading2";
 import SubHeading from "../../components/SubHeading";
-function AcceptedScreen({ setActive, setPortfolio, initialState }) {
+function AcceptedScreen({
+  setActive,
+  setPortfolio,
+  initialState,
+  acceptedState,
+}) {
   const handleStartNewCheck = () => {
     setPortfolio(initialState);
     setActive(1);
@@ -26,92 +31,108 @@ function AcceptedScreen({ setActive, setPortfolio, initialState }) {
             Congratulations
           </h1>
           <h3 className="text-center text-textColor2 font-semibold font-poppins text-xl sm:text-2xl tab:text-3xl pt-4">
-            You are Eligible
+            {acceptedState.title}
           </h3>
           <Text align={`text-center`} font={`font-semibold`}>
-            Based on the information provided, you are eligible for an education
-            loan. Here are the loan options available to you:
+            {acceptedState.text}
           </Text>
         </div>
-        <div className="mt-4 rounded-md">
-          <div className="pt-5 px-4 pb-4 bg-[#0DA500]/10 rounded-t-md">
-            <Heading2 color={`text-[#0DA500]`}>Education Loan</Heading2>
-          </div>
-          <div className="rounded-b-md bg-white p-4">
-            <div className="flex items-center justify-between">
-              <div>
-                <SubHeading color={`textColor3`}>Loan Amount:</SubHeading>
-                <SubHeading color={`textColor3`}>Interest Rate:</SubHeading>
-                <SubHeading color={`textColor3`}>Loan Term:</SubHeading>
-              </div>
-              <div>
-                <SubHeading color={`textColor4`} align={`text-right`}>
-                  2,000,000
-                </SubHeading>
-                <SubHeading color={`textColor4`} align={`text-right`}>
-                  5.57%
-                </SubHeading>
-                <SubHeading color={`textColor4`} align={`text-right`}>
-                  10 years
-                </SubHeading>
-              </div>
+        {acceptedState.education_loan && (
+          <div className="mt-4 rounded-md">
+            <div className="pt-5 px-4 pb-4 bg-[#0DA500]/10 rounded-t-md flex items-center justify-between">
+              <Heading2 color={`text-[#0DA500]`}>Education Loan</Heading2>
+              {acceptedState.education_loan.is_recommended && (
+                <div className="bg-[#0DA500]/30 py-1 px-2 rounded-xl">
+                  <Text
+                    color={`[#0DA500]`}
+                    align={`text-center`}
+                    font={`font-semibold`}
+                  >
+                    Recommended
+                  </Text>
+                </div>
+              )}
             </div>
-            <button className="w-full bg-[#0DA500] rounded-md mt-4">
-              <SubHeading
-                color={`white`}
-                align={"text-center"}
-                padding={`py-2`}
-              >
-                Apply Now
-              </SubHeading>
-            </button>
-          </div>
-        </div>
-        <div className="mt-4 rounded-md">
-          <div className="pt-5 px-4 pb-4 bg-secondary/10 rounded-t-md flex items-center justify-between">
-            <Heading2 color={`text-secondary`}>
-              Standard Education Loan
-            </Heading2>
-            <div className="bg-secondary/30 py-1 px-2 rounded-xl">
-              <Text
-                color={`secondary`}
-                align={`text-center`}
-                font={`font-semibold`}
-              >
-                Recommended
-              </Text>
+            <div className="rounded-b-md bg-white p-4">
+              <div className="flex items-center justify-between">
+                <div>
+                  <SubHeading color={`textColor3`}>Loan Amount:</SubHeading>
+                  <SubHeading color={`textColor3`}>Interest Rate:</SubHeading>
+                  <SubHeading color={`textColor3`}>Loan Term:</SubHeading>
+                </div>
+                <div>
+                  <SubHeading color={`textColor4`} align={`text-right`}>
+                    {acceptedState.education_loan.loan_amount}
+                  </SubHeading>
+                  <SubHeading color={`textColor4`} align={`text-right`}>
+                    {acceptedState.education_loan.interest_rate}
+                  </SubHeading>
+                  <SubHeading color={`textColor4`} align={`text-right`}>
+                    {acceptedState.education_loan.term}
+                  </SubHeading>
+                </div>
+              </div>
+              <button className="w-full bg-[#0DA500] rounded-md mt-4">
+                <SubHeading
+                  color={`white`}
+                  align={"text-center"}
+                  padding={`py-2`}
+                >
+                  Apply Now
+                </SubHeading>
+              </button>
             </div>
           </div>
-          <div className="rounded-b-md bg-white p-4">
-            <div className="flex items-center justify-between">
-              <div>
-                <SubHeading color={`textColor3`}>Loan Amount:</SubHeading>
-                <SubHeading color={`textColor3`}>Interest Rate:</SubHeading>
-                <SubHeading color={`textColor3`}>Loan Term:</SubHeading>
-              </div>
-              <div>
-                <SubHeading color={`textColor4`} align={`text-right`}>
-                  2,000,000
-                </SubHeading>
-                <SubHeading color={`textColor4`} align={`text-right`}>
-                  5.57%
-                </SubHeading>
-                <SubHeading color={`textColor4`} align={`text-right`}>
-                  10 years
-                </SubHeading>
-              </div>
+        )}
+        {acceptedState.standard_education_loan && (
+          <div className="mt-4 rounded-md">
+            <div className="pt-5 px-4 pb-4 bg-secondary/10 rounded-t-md flex items-center justify-between">
+              <Heading2 color={`text-secondary`}>
+                Standard Education Loan
+              </Heading2>
+              {acceptedState.standard_education_loan.is_recommended && (
+                <div className="bg-secondary/30 py-1 px-2 rounded-xl">
+                  <Text
+                    color={`secondary`}
+                    align={`text-center`}
+                    font={`font-semibold`}
+                  >
+                    Recommended
+                  </Text>
+                </div>
+              )}
             </div>
-            <button className="w-full bg-white hover:bg-secondary/20 border border-secondary rounded-md mt-4">
-              <SubHeading
-                color={`secondary`}
-                align={"text-center"}
-                padding={`py-2`}
-              >
-                Learn More
-              </SubHeading>
-            </button>
+            <div className="rounded-b-md bg-white p-4">
+              <div className="flex items-center justify-between">
+                <div>
+                  <SubHeading color={`textColor3`}>Loan Amount:</SubHeading>
+                  <SubHeading color={`textColor3`}>Interest Rate:</SubHeading>
+                  <SubHeading color={`textColor3`}>Loan Term:</SubHeading>
+                </div>
+                <div>
+                  <SubHeading color={`textColor4`} align={`text-right`}>
+                    {acceptedState.standard_education_loan.loan_amount}
+                  </SubHeading>
+                  <SubHeading color={`textColor4`} align={`text-right`}>
+                    {acceptedState.standard_education_loan.interest_rate}
+                  </SubHeading>
+                  <SubHeading color={`textColor4`} align={`text-right`}>
+                    {acceptedState.standard_education_loan.term}
+                  </SubHeading>
+                </div>
+              </div>
+              <button className="w-full bg-white hover:bg-secondary/20 border border-secondary rounded-md mt-4">
+                <SubHeading
+                  color={`secondary`}
+                  align={"text-center"}
+                  padding={`py-2`}
+                >
+                  Learn More
+                </SubHeading>
+              </button>
+            </div>
           </div>
-        </div>
+        )}
         <div className="mt-4">
           <button
             onClick={handleStartNewCheck}

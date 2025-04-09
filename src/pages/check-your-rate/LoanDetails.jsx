@@ -3,14 +3,33 @@ import Heading2 from "../../components/Heading2";
 import Text from "../../components/Text";
 import SubTitle from "../../components/SubTitle";
 import SealPercent from "../../assets/SealPercent.svg";
-function LoanDetails({ portfolio, setPortfolio, setActive }) {
+import { checkEligibility } from "../../services/EligibilityCheck.js";
+import { useSelector } from "react-redux";
+function LoanDetails({
+  portfolio,
+  setPortfolio,
+  setActive,
+  setAcceptedState,
+  setRejectedState,
+}) {
+  const user = useSelector((state) => state.auth);
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (portfolio.preferred_loan_term === "") {
-      alert("Please select an education context.");
-      return;
+    async function isEligible() {
+      try {
+        const response = await checkEligibility(user.userToken, portfolio);
+        if (response.result.is_eligible) {
+          setAcceptedState(response.result);
+          setActive(5); // Navigate to the accepted screen
+        } else {
+          setRejectedState(response.result);
+          setActive(6); // Navigate to the rejected screen
+        }
+      } catch (error) {
+        alert("Error checking eligibility. Please try again later.");
+      }
     }
-    setActive(3);
+    isEligible();
   };
   return (
     <div className="rounded-md bg-gray-100/30 border border-white w-full tab:w-[60%] p-2 sm:p-4 tab:p-8">
@@ -241,7 +260,7 @@ function LoanDetails({ portfolio, setPortfolio, setActive }) {
         </div>
         <div className="w-full mt-4 flex items-center justify-between">
           <button
-            onClick={() => setActive(1)}
+            onClick={() => setActive(3)}
             type="button"
             className="hover:bg-secondary hover:text-white w-[30%] py-2 bg-white border border-secondary font-semibold text-secondary rounded-md"
           >
