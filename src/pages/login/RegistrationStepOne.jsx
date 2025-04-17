@@ -58,7 +58,7 @@ function RegistrationStepOne({ setPage, data, setData }) {
     if (allFilled) {
       setIsSubmitted(() => true);
       setIsvalid(() => validateBangladeshiPhoneNumber(data.mobile_number));
-    } else setErr("Fill all the fields.");
+    } else setErr("Please fill all the fields.");
   }
   function handleDateSubmit(date) {
     setData({ ...data, date_of_birth: date });
