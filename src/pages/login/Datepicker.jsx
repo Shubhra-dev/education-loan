@@ -9,6 +9,8 @@ const Datepicker = ({
   rounded,
   placeholder,
   textColor,
+  onChangeRaw,
+  required,
 }) => {
   return (
     <div className="relative">
@@ -16,7 +18,9 @@ const Datepicker = ({
         dateFormat={dateFormat}
         selected={date}
         name={name}
+        required={required}
         onChange={(date) => setDate(date)}
+        onChangeRaw={onChangeRaw}
         className={`w-full py-2 px-3 border ${
           rounded ? "rounded-md" : ""
         } border-textColor3 ${textColor ? textColor : ""}`}

@@ -1,4 +1,4 @@
-const BASE_URL = `https://admin-p2p.alzakati.com/api/client-panel`;
+const BASE_URL = `https://admin.ed.abidurrahman.com/api/client-panel`;
 
 const myHeaders = new Headers();
 myHeaders.append("Accept", "application/json");

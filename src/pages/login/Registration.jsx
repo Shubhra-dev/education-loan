@@ -26,7 +26,7 @@ function Registration() {
   const [page, setPage] = useState(1);
   const [userData, setUserData] = useState(initialUserState);
   return (
-    <div className="w-full bg-gray-200 sm:min-h-screen tab:h-screen flex sm:items-center">
+    <div className="w-full max-w-content mx-auto bg-gray-200 sm:min-h-screen flex sm:items-center">
       <div className="w-full sm:w-2/3 p-4 sm:p-0">
         <img
           src={Logo}

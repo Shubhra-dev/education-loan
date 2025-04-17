@@ -30,6 +30,9 @@ export default {
       boxShadow: {
         allSide: "0 0 10px 5px rgba(0, 0, 0, 0.5)", // Example custom shadow
       },
+      maxWidth: {
+        content: "1750px",
+      },
       screens: {
         tab: "811px",
         smLap: "1025px",

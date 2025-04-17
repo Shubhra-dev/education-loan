@@ -20,7 +20,7 @@ function SupportedSchoolsHero() {
         alt="graduation hat"
         className="absolute top-0 right-0 tab:hidden"
       />
-      <div className="sm:w-5/6 tab:w-3/5 mx-auto relative">
+      <div className="px-4 smLap:px-0 smLap:w-10/12 laptop:w-9/12 mx-auto relative">
         <Title align={`text-center`} color={`text-white`}>
           MPOWER’s eligible network of schools in the U.S. and Canada
         </Title>

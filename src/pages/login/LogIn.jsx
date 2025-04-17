@@ -14,21 +14,24 @@ import { logIn } from "../../features/authentication/authSlice";
 
 function LogIn() {
   const dispatch = useDispatch();
-  const navigate = useNavigate();
   const location = useLocation();
-  const from = location.state?.from?.pathname || "/dashboard";
+  const from = location.state?.from?.pathname || "/";
+  const navigate = useNavigate();
   const [password, setPassword] = useState("");
   const [emailOrPhone, setEmailOrPhone] = useState("");
   const [floatingNote, setFloatingNote] = useState({ state: false, msg: "" });
   const [see, setSee] = useState(false);
-  const handleLogin = async () => {
+  const handleLogin = async (e) => {
+    e.preventDefault();
     try {
       const response = await loginRequest(emailOrPhone, password);
 
       if (response && response.success) {
+        // Dispatch the logIn action with the user data
         dispatch(
           logIn({
             name: response.result.client.first_name,
+            profileImage: response.result.client.profile_image,
             token: response.result.token,
           })
         );
@@ -47,11 +50,10 @@ function LogIn() {
       console.error("Error:", err);
     }
   };
-
   return (
-    <div className="sm:h-screen w-full flex items-center">
+    <div className="sm:min-h-screen w-full max-w-content mx-auto flex items-center">
       <div className="w-full px-4 sm:px-0 sm:w-[60%] h-full">
-        <div className="flex h-[85%] w-full items-center">
+        <div className="flex  h-[85%] w-full items-center">
           <div className="w-full pt-2">
             <img
               src={Logo}
@@ -69,80 +71,81 @@ function LogIn() {
                 .
               </span>
             </SubTitle>
-            <div className="relative my-2 m-auto rounded-md border border-dashed w-full sm:w-3/4 tab:w-1/2 border-gray-400 flex items-center gap-2">
-              <div className="absolute left-2 top-[30%] w-max">
-                <BiEnvelope className="text-xl" />
+            <form onSubmit={handleLogin}>
+              <div className="relative my-2 m-auto rounded-md border border-dashed w-full sm:w-3/4 tab:w-1/2 border-gray-400 flex items-center gap-2">
+                <div className="absolute left-2 top-[30%] w-max">
+                  <BiEnvelope className="text-xl" />
+                </div>
+                <input
+                  type="text"
+                  name="emailOrPhone"
+                  id="emailOrPhone"
+                  required
+                  className="py-3 pr-3 pl-8 w-full rounded-md"
+                  placeholder="Email / Phone"
+                  value={emailOrPhone}
+                  onChange={(e) => setEmailOrPhone(e.target.value)}
+                />
               </div>
-              <input
-                type="text"
-                name="emailOrPhone"
-                id="emailOrPhone"
-                className="py-3 pr-3 pl-8 w-full rounded-md"
-                placeholder="Email / Phone"
-                value={emailOrPhone}
-                onChange={(e) => setEmailOrPhone(e.target.value)}
-              />
-            </div>
-            <div className="relative mt-4 mb-2 m-auto rounded-md border border-dashed w-full sm:w-3/4 tab:w-1/2 border-gray-400 flex items-center gap-2">
-              <div className="absolute left-2 top-[30%] w-max">
-                {<RiLockPasswordLine className="text-xl" />}
+              <div className="relative mt-4 mb-2 m-auto rounded-md border border-dashed w-full sm:w-3/4 tab:w-1/2 border-gray-400 flex items-center gap-2">
+                <div className="absolute left-2 top-[30%] w-max">
+                  {<RiLockPasswordLine className="text-xl" />}
+                </div>
+                <input
+                  type={see ? "text" : "password"}
+                  name="Password"
+                  required
+                  id="password"
+                  className="py-3 px-8 w-full rounded-md"
+                  placeholder="Password"
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                />
+                <div
+                  className="absolute right-2 top-[35%] w-max"
+                  onClick={() => setSee(!see)}
+                >
+                  {see && <RiEyeLine className="text-xl" />}
+                  {!see && <RiEyeCloseLine className="text-xl" />}
+                </div>
               </div>
-              <input
-                type={see ? "text" : "password"}
-                name="Password"
-                id="password"
-                className="py-3 px-8 w-full rounded-md"
-                placeholder="Password"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-              />
               <div
-                className="absolute right-2 top-[35%] w-max"
-                onClick={() => setSee(!see)}
+                onClick={() => navigate("/auth/forgot-password")}
+                className="cursor-pointer flex gap-1 items-center justify-end w-full sm:w-3/4 tab:w-1/2 m-auto"
               >
-                {see ? (
-                  <RiEyeLine className="text-xl" />
-                ) : (
-                  <RiEyeCloseLine className="text-xl" />
-                )}
+                <HiLockClosed className="text-textColor3" />
+                <Text color={`textColor3`}>Forgot Password</Text>
               </div>
-            </div>
-            <div
-              onClick={() => navigate("/auth/forgot-password")}
-              className="cursor-pointer flex gap-1 items-center justify-end w-full sm:w-3/4 tab:w-1/2 m-auto"
-            >
-              <HiLockClosed className="text-textColor3" />
-              <Text color={`textColor3`}>Forgot Password</Text>
-            </div>
-            {floatingNote.state && (
-              <div className="bg-red-200 p-2 mt-2 rounded-md">
-                <Text>{floatingNote.msg}</Text>
+              {floatingNote.state && (
+                <div className="bg-red-200 p-2 mt-2 rounded-md w-full sm:w-3/4 tab:w-1/2 m-auto">
+                  <Text>{floatingNote.msg}</Text>
+                </div>
+              )}
+              <div className="pt-2 w-max m-auto">
+                <button
+                  type="submit"
+                  className={`bg-gradient-to-r from-secondary to-primary uppercase text-white tab:text-xl font-bold tracking-[4px]  py-2.5 px-[80px] rounded-[10px]`}
+                >
+                  Login
+                </button>
               </div>
-            )}
-            <div className="pt-2 w-max m-auto">
-              <button
-                onClick={handleLogin}
-                className={`bg-gradient-to-r from-primary to-secondary uppercase text-white tab:text-xl font-bold tracking-[4px]  py-2.5 px-[80px] rounded-[10px]`}
+              <Text
+                align={`text-center`}
+                color={`textColor3`}
+                font={`font-semibold`}
               >
-                Login
-              </button>
-            </div>
-            <Text
-              align={`text-center`}
-              color={`textColor3`}
-              font={`font-semibold`}
-            >
-              Don&apos;t have an account?{" "}
-              <span
-                className="text-primary cursor-pointer hover:text-accent"
-                onClick={() => navigate("/auth/registration")}
-              >
-                Sign Up
-              </span>
-            </Text>
+                Don&apos;t have an account?{" "}
+                <span
+                  className="text-primary cursor-pointer hover:text-accent"
+                  onClick={() => navigate("/auth/registration")}
+                >
+                  Sign Up
+                </span>
+              </Text>
+            </form>
           </div>
         </div>
-        <div className="w-full sm:h-[15%] pt-[40px] sm:pt-4 tab:pt-0">
+        <div className="w-full sm:h-[15%] pt-[40px] sm:pt-4 tab:pt-8">
           <div className="w-max m-auto border-y border-gray-400 flex items-center gap-6 justify-center">
             <div className="flex items-center gap-1">
               <PiPhoneCall className="text-xl" />

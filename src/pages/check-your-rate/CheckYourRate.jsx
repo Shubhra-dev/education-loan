@@ -39,7 +39,7 @@ function CheckYourRate() {
 
   return (
     <div
-      className="w-full h-screen bg-gray-200 bg-no-repeat bg-center bg-cover overflow-y-scroll pb-4"
+      className="max-w-content mx-auto h-screen bg-gray-200 bg-no-repeat bg-center bg-cover overflow-y-scroll pb-4"
       style={{ backgroundImage: `url(${SideBg})` }}
     >
       <div className="relative h-[70px] bg-white shadow-md shadow-gray-300 py-2 z-50">
@@ -90,6 +90,7 @@ function CheckYourRate() {
         )}
         {active == 5 && (
           <AcceptedScreen
+            portfolio={portfolio}
             acceptedState={acceptedState}
             setActive={setActive}
             setPortfolio={setPortfolio}

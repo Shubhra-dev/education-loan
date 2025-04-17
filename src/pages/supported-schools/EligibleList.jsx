@@ -6,8 +6,8 @@ import SectionLayout from "../../ui/SectionLayout";
 function EligibleList() {
   return (
     <SectionLayout>
-      <div className="flex flex-col sm:flex-row items-center sm:justify-between py-2 sm:py-4">
-        <div className="w-full sm:w-[35%]">
+      <div className="flex flex-col sm:flex-row items-center sm:justify-center py-2 sm:py-4">
+        <div className="w-full sm:w-[40%]">
           <div className="flex flex-col sm:flex-row sm:gap-4 items-center justify-center sm:justify-normal">
             <Text color={`textColor1`} font={`font-semibold`}>
               Which schools

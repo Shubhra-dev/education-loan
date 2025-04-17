@@ -70,6 +70,7 @@ function RegistrationStepThree({ setPage, data, setData }) {
             dispatch(
               logIn({
                 token: response.result.token,
+                profileImage: response.result.client.profile_image,
                 name: response.result.client.first_name,
               })
             );
@@ -207,7 +208,7 @@ function RegistrationStepThree({ setPage, data, setData }) {
         </button>
         <button
           onClick={handleSubmit}
-          className={`bg-gradient-to-r from-primary to-secondary uppercase text-white text-base sm:text-lg tab:text-xl font-bold tracking-[4px]  py-2.5 rounded-[10px] w-1/2`}
+          className={`bg-gradient-to-r from-[#0D5152] to-[#1DB6B8] uppercase text-white text-base sm:text-lg tab:text-xl font-bold tracking-[4px]  py-2.5 rounded-[10px] w-1/2`}
         >
           Submit
         </button>

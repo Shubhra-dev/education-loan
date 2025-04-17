@@ -1,10 +1,18 @@
+import { formatDateToYYYYMMDD } from "./dateFunctions";
+import { dateFormatToMonthYear } from "./FormattedDate";
+
 const myHeaders = new Headers();
 myHeaders.append("Accept", "application/json");
 myHeaders.append("Content-Type", "application/json");
 
 export async function checkRateSubmit(data, userToken) {
   myHeaders.append("Authorization", `Bearer ${userToken}`);
-
+  data = {
+    ...data,
+    date_of_birth: formatDateToYYYYMMDD(data.date_of_birth),
+    class_start_date: dateFormatToMonthYear(data.class_start_date),
+    expected_graduation: dateFormatToMonthYear(data.expected_graduation),
+  };
   const raw = JSON.stringify({ ...data });
 
   const requestOptions = {
@@ -13,10 +21,10 @@ export async function checkRateSubmit(data, userToken) {
     body: raw,
     redirect: "follow",
   };
-  console.log(raw, userToken);
+
   try {
     const response = await fetch(
-      "https://admin-p2p.alzakati.com/api/client-panel/dashboard/check-your-rate-submit",
+      "https://admin.ed.abidurrahman.com/api/client-panel/dashboard/loan-portfolios/submit",
       requestOptions
     );
     const result = await response.json();

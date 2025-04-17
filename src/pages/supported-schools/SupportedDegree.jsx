@@ -6,8 +6,8 @@ import ScrollDegree from "./ScrollDegree";
 function SupportedDegree() {
   return (
     <SectionLayout>
-      <div className="py-2 sm:py-4 grid grid-cols-1 sm:grid-cols-4 tab:grid-cols-5 gap:2 tab:gap-4">
-        <div className="w-full sm:col-span-2 bg-primary rounded-md px-8 py-4">
+      <div className="py-2 sm:py-4 flex flex-col sm:flex-row justify-between gap:2 tab:gap-0">
+        <div className="w-full sm:w-[55%] bg-primary rounded-md px-8 py-4">
           <Title color={`text-white`}>We support all degree types</Title>
           <Text color={`white`} padding={`py-4`}>
             Your academic goals are unique. That’s why we support the full range
@@ -30,7 +30,7 @@ function SupportedDegree() {
             <ScrollDegree itemAlign={`start`} name={`Select Bootcamp`} />
           </div>
         </div>
-        <div className="w-full sm:col-span-2 tab:col-span-3">
+        <div className="w-full sm:w-[45%] tab:col-span-3">
           <img
             src={DegreeGroup}
             alt="Celebrating Degree"

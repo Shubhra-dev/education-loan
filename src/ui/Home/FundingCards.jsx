@@ -9,8 +9,12 @@ import Scroll from "../../icon/Scroll";
 import GlobeHem from "../../icon/GlobeHem";
 function FundingCards() {
   return (
-    <SectionLayout>
-      <Title align={`text-center`} padding={`py-0`} color={`text-primary`}>
+    <SectionLayout padding={`py-4 sm:py-12`}>
+      <Title
+        align={`text-center`}
+        padding={`py-0 smLap:py-1`}
+        color={`text-primary`}
+      >
         Funding for international students,
       </Title>
       <Title align={`text-center`} padding={`py-0`} color={`text-secondary`}>

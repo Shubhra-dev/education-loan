@@ -3,12 +3,33 @@ import Congrats from "../../assets/Congrats.png";
 import Text from "../../components/Text";
 import Heading2 from "../../components/Heading2";
 import SubHeading from "../../components/SubHeading";
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { useSelector } from "react-redux";
+import { checkRateSubmit } from "../../services/checkYourRate";
 function AcceptedScreen({
+  portfolio,
   setActive,
   setPortfolio,
   initialState,
   acceptedState,
 }) {
+  const [isLoading, setIsLoading] = useState(false);
+  const navigate = useNavigate();
+  const user = useSelector((state) => state.auth);
+  async function handleSubmit() {
+    try {
+      setIsLoading(true);
+      const response = await checkRateSubmit(portfolio, user.userToken);
+      if (response && response.success) {
+        setIsLoading(false);
+        navigate(`/form/${response.result.loan_portfolio.id}`);
+      }
+    } catch (err) {
+      setIsLoading(false);
+      return;
+    }
+  }
   const handleStartNewCheck = () => {
     setPortfolio(initialState);
     setActive(1);
@@ -72,13 +93,16 @@ function AcceptedScreen({
                   </SubHeading>
                 </div>
               </div>
-              <button className="w-full bg-[#0DA500] rounded-md mt-4">
+              <button
+                onClick={handleSubmit}
+                className="w-full bg-[#0DA500] rounded-md mt-4"
+              >
                 <SubHeading
                   color={`white`}
                   align={"text-center"}
                   padding={`py-2`}
                 >
-                  Apply Now
+                  {isLoading ? "Applying.." : "Apply Now"}
                 </SubHeading>
               </button>
             </div>
@@ -121,13 +145,16 @@ function AcceptedScreen({
                   </SubHeading>
                 </div>
               </div>
-              <button className="w-full bg-white hover:bg-secondary/20 border border-secondary rounded-md mt-4">
+              <button
+                onClick={handleSubmit}
+                className="w-full bg-white hover:bg-secondary/20 border border-secondary rounded-md mt-4"
+              >
                 <SubHeading
                   color={`secondary`}
                   align={"text-center"}
                   padding={`py-2`}
                 >
-                  Learn More
+                  {isLoading ? "Applying.." : "Apply Now"}
                 </SubHeading>
               </button>
             </div>

@@ -11,6 +11,7 @@ import Registration from "./pages/login/Registration";
 import CheckYourRate from "./pages/check-your-rate/CheckYourRate";
 import ForgotPassword from "./pages/forgot-password/ForgotPassword";
 import PrivateRoute from "./PrivateRoute";
+import Form from "./pages/portfolio/Form";
 
 const router = createBrowserRouter(
   [
@@ -48,6 +49,11 @@ const router = createBrowserRouter(
           <CheckYourRate />
         </PrivateRoute>
       ),
+      errorElement: <Error />,
+    },
+    {
+      path: "/form/:portfolio_id",
+      element: <Form />,
       errorElement: <Error />,
     },
     {

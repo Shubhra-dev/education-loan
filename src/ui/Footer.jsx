@@ -35,7 +35,7 @@ function Footer() {
           </button>
         </div>
       </div>
-      <div>
+      <div className="max-w-content mx-auto">
         <div className="px-4 smLap:px-0 smLap:w-10/12 laptop:w-9/12 m-auto flex flex-wrap sm:flex-nowrap items-center justify-between">
           <div className="w-full sm:w-[40%] tab:w-1/4 mb-2 sm:mb-0">
             <img src={LogoWhite} alt="logo" className="w-max m-auto sm:m-0" />
@@ -101,7 +101,7 @@ function Footer() {
           </div>
         </div>
       </div>
-      <div className="mt-4 border-t border-t-secondary">
+      <div className="mt-4 border-t border-t-secondary max-w-content mx-auto">
         <div className="px-4 smLap:px-0 smLap:w-10/12 laptop:w-9/12 m-auto flex items-center justify-between pt-2.5">
           <div className="flex items-center gap-5">
             <img

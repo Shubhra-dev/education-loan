@@ -27,7 +27,7 @@ function Applayout() {
         <p onClick={() => nav("/pl/dental")}>PL Dental</p>
       </div> */}
       <Header />
-      <div className="h-min-screen">
+      <div className="min-h-screen max-w-content mx-auto">
         <Outlet />
       </div>
       <Footer />

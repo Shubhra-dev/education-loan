@@ -1,14 +1,13 @@
-const myHeaders = new Headers();
-myHeaders.append("Accept", "application/json");
-myHeaders.append("Content-Type", "application/json");
+export async function uploadFileToServer(file) {
+  const myHeaders = new Headers();
+  myHeaders.append("Accept", "application/json"); // Skip Content-Type
 
-export async function fileUpload(file) {
   const formData = new FormData();
-  formData.append("file", file);
+  formData.append("file", file); // Ensure the key matches API expectations
 
   const requestOptions = {
     method: "POST",
-    headers: myHeaders,
+    headers: myHeaders, // Only include Accept
     body: formData,
     redirect: "follow",
   };
@@ -20,13 +19,71 @@ export async function fileUpload(file) {
     );
 
     if (!response.ok) {
-      throw new Error("File upload failed");
+      const errorDetails = await response.text(); // Read error details from server
+      throw new Error(`Failed to upload file: ${errorDetails}`);
     }
 
-    const result = await response.json(); // Assuming API returns a JSON with a `path` field
-    console.log("Uploaded file path:", result.path);
+    const result = await response.json(); // Parse the JSON response
+    console.log(result);
+    return result; // Return the API response
   } catch (error) {
     console.error("Error uploading file:", error);
-    alert("Error uploading file");
+    throw error; // Re-throw error for handling in the calling component
   }
 }
+export const updateProfileImage = async (token, file) => {
+  const myHeaders = new Headers();
+  myHeaders.append("Accept", "application/json");
+  myHeaders.append("Authorization", `Bearer ${token}`);
+
+  const formdata = new FormData();
+  formdata.append("profile_image", file);
+
+  const requestOptions = {
+    method: "POST",
+    headers: myHeaders,
+    body: formdata,
+    redirect: "follow",
+  };
+
+  try {
+    const response = await fetch(
+      "https://admin-p2p.alzakati.com/api/client-panel/dashboard/profile-image-update",
+      requestOptions
+    );
+    const result = await response.json(); // Use `.json()` if the API returns JSON
+    console.log(result);
+    return result;
+  } catch (error) {
+    console.error("Error updating profile image:", error);
+    throw error; // Re-throw the error for the calling code to handle
+  }
+};
+export const updateProfileImageInvestor = async (token, file) => {
+  const myHeaders = new Headers();
+  myHeaders.append("Accept", "application/json");
+  myHeaders.append("Authorization", `Bearer ${token}`);
+
+  const formdata = new FormData();
+  formdata.append("profile_image", file);
+
+  const requestOptions = {
+    method: "POST",
+    headers: myHeaders,
+    body: formdata,
+    redirect: "follow",
+  };
+
+  try {
+    const response = await fetch(
+      "https://investment.alzakati.com/api/investor-panel/profile-image-update",
+      requestOptions
+    );
+    const result = await response.json();
+    console.log(result);
+    return result;
+  } catch (error) {
+    console.error("Error updating profile image:", error);
+    throw error; // Re-throw the error for the calling code to handle
+  }
+};

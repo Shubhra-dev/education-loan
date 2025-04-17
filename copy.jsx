@@ -7,9 +7,9 @@ import SmallText from "../components/SmallText";
 import Text from "../components/Text";
 import HeadCall from "../icon/HeadCall";
 import { FiLogIn } from "react-icons/fi";
-import { LuLayoutDashboard } from "react-icons/lu";
-import { CgProfile } from "react-icons/cg";
 import { BiLogOut } from "react-icons/bi";
+import { CgProfile } from "react-icons/cg";
+import { LuLayoutDashboard } from "react-icons/lu";
 import { logOut } from "../features/authentication/authSlice";
 
 const Header = () => {
@@ -63,33 +63,37 @@ const Header = () => {
       path: "/",
     },
     {
-      name: "Schools",
-      path: "/supported-schools",
+      name: "Fertility",
+      path: "/fertility",
     },
     {
-      name: "Refer a Friend",
-      path: "/referrals",
+      name: "Dental",
+      path: "/dental",
     },
     {
-      name: "Learn More",
-      path: "/learn-more",
+      name: "Mental Health",
+      path: "/mental-health",
+    },
+    {
+      name: "Plastic Surgery",
+      path: "/plastic-surgery",
+    },
+    {
+      name: "Weight Loss",
+      path: "/weight-loss",
     },
   ];
 
-  // const handleSubMenuToggle = (index) => {
-  //   setActiveSubMenu(activeSubMenu === index ? null : index);
-  // };
-
   return (
     <header className="">
-      <nav className="sm:my-2">
+      <nav className="py-2 shadow-md">
         <div className="hidden tab:block">
-          <div className="w-full max-w-content mx-auto">
-            <div className="flex justify-between px-4 smLap:px-0 smLap:w-10/12 laptop:w-9/12 m-auto">
-              <img src={Logo} alt="logo" />
+          <div className="w-full">
+            <div className="flex justify-between px-4 tab:px-0 tab:w-11/12 laptop:w-5/6 m-auto">
+              <img src={Logo} alt="logo" className="h-14" />
               <div className="flex items-center gap-8">
                 <div className="flex items-center gap-3">
-                  <div className="p-2 rounded-full border border-secondary">
+                  <div className="p-2 rounded-full border border-headerColor">
                     <HeadEnvelope />
                   </div>
                   <div>
@@ -104,7 +108,7 @@ const Header = () => {
                   </div>
                 </div>
                 <div className="flex items-center gap-3">
-                  <div className="p-2 rounded-full border border-secondary">
+                  <div className="p-2 rounded-full border border-headerColor">
                     <HeadCall />
                   </div>
                   <div>
@@ -120,8 +124,8 @@ const Header = () => {
                 </div>
                 {!user.isLoggedIn && (
                   <button
-                    onClick={() => nav("/auth/login")}
-                    className="flex items-center gap-2 uppercase px-6 py-2 bg-secondary rounded-md"
+                    onClick={() => nav("auth/login")}
+                    className="flex items-center gap-2 uppercase px-6 py-2 bg-headerColor rounded-md hover:bg-accent"
                   >
                     <Text font={`font-semibold `} color={`white`}>
                       login
@@ -130,10 +134,101 @@ const Header = () => {
                   </button>
                 )}
                 {user.isLoggedIn && (
+                  <div className="relative">
+                    <div
+                      onClick={handleProfileOpen}
+                      ref={profileRef}
+                      className="flex items-center gap-2 cursor-pointer border border-gray-300 rounded-md p-1 hover hover:bg-secondary/20"
+                    >
+                      <img
+                        src={user.profileImage}
+                        alt="profile image"
+                        className="w-10 h-10 rounded-full object-center"
+                      />
+                      <Text>{user.userName}</Text>
+                      {isProfileOpen && (
+                        <div className="p-2 absolute top-12 right-0 bg-gray-50 border border-primary rounded-md w-max z-[100]">
+                          <div
+                            onClick={() => nav(`/user/dashboard`)}
+                            className="flex gap-2 items-center p-1 hover:bg-secondary/10 transition-all duration-200 rounded-md cursor-pointer  "
+                          >
+                            <LuLayoutDashboard className="text-primary text-xl" />
+                            <Text
+                              color={`primary`}
+                              padding={`py-0`}
+                              font={`font-semibold`}
+                            >
+                              Dashboard
+                            </Text>
+                          </div>
+                          <div
+                            onClick={() =>
+                              user.userType === "client"
+                                ? nav(`/user/profile`)
+                                : nav(`/investment/profile`)
+                            }
+                            className="flex gap-2 items-center p-1 hover:bg-secondary/10 transition-all duration-200 rounded-md cursor-pointer  my-2"
+                          >
+                            <CgProfile className="text-primary text-xl" />
+                            <Text
+                              color={`primary`}
+                              padding={`py-0`}
+                              font={`font-semibold`}
+                            >
+                              Profile
+                            </Text>
+                          </div>
+                          <div
+                            onClick={() => dispatch(logOut())}
+                            className="flex gap-2 items-center p-1 hover:bg-secondary/10 transition-all duration-200 rounded-md cursor-pointer "
+                          >
+                            <BiLogOut className="text-primary text-xl" />
+                            <Text
+                              color={`primary`}
+                              padding={`py-0`}
+                              font={`font-semibold`}
+                            >
+                              Log Out
+                            </Text>
+                          </div>
+                        </div>
+                      )}
+                    </div>
+                  </div>
+                )}
+              </div>
+            </div>
+          </div>
+          <div
+            className={`w-full py-2 bg-white  border-t border-t-gray-300  ${
+              stickyMenu
+                ? "fixed shadow-md top-0 h-[65px]"
+                : "-top-[65px] tab:-top-[70px] mt-2"
+            } left-0 z-50 transition-top duration-500 ease-in-out`}
+          >
+            <div
+              className={`flex ${
+                stickyMenu ? "justify-between" : "justify-end"
+              } items-center px-4 tab:px-0 tab:w-11/12 laptop:w-5/6 m-auto`}
+            >
+              {/* Desktop Menu */}
+              {stickyMenu && !user.isLoggedIn && (
+                <button
+                  onClick={() => nav("auth/login")}
+                  className="flex items-center gap-2 uppercase px-6 py-2 bg-headerColor rounded-md hover:bg-accent"
+                >
+                  <Text font={`font-semibold `} color={`white`}>
+                    login
+                  </Text>
+                  <FiLogIn className="text-white text-xl" />
+                </button>
+              )}
+              {stickyMenu && user.isLoggedIn && (
+                <div className="relative">
                   <div
                     onClick={handleProfileOpen}
                     ref={profileRef}
-                    className="flex relative items-center gap-2 cursor-pointer border border-gray-300 rounded-md p-1 hover hover:bg-secondary/20"
+                    className="flex items-center gap-2 cursor-pointer border border-gray-300 rounded-md p-1 hover hover:bg-secondary/20"
                   >
                     <img
                       src={user.profileImage}
@@ -144,7 +239,7 @@ const Header = () => {
                     {isProfileOpen && (
                       <div className="p-2 absolute top-12 right-0 bg-gray-50 border border-primary rounded-md w-max z-[100]">
                         <div
-                          onClick={() => nav(`/`)}
+                          onClick={() => nav(`/user/dashboard`)}
                           className="flex gap-2 items-center p-1 hover:bg-secondary/10 transition-all duration-200 rounded-md cursor-pointer  "
                         >
                           <LuLayoutDashboard className="text-primary text-xl" />
@@ -159,7 +254,7 @@ const Header = () => {
                         <div
                           onClick={() =>
                             user.userType === "client"
-                              ? nav(`/`)
+                              ? nav(`/user/profile`)
                               : nav(`/investment/profile`)
                           }
                           className="flex gap-2 items-center p-1 hover:bg-secondary/10 transition-all duration-200 rounded-md cursor-pointer  my-2"
@@ -189,40 +284,28 @@ const Header = () => {
                       </div>
                     )}
                   </div>
-                )}
-              </div>
-            </div>
-          </div>
-          <div
-            className={`w-full py-2 bg-primary  ${
-              stickyMenu
-                ? "fixed shadow-md top-0 "
-                : "-top-[65px] tab:-top-[88px] mt-2"
-            } left-0 z-50 transition-top duration-500 ease-in-out`}
-          >
-            <div className="w-full max-w-content mx-auto">
-              <div className="flex justify-start items-center px-4 smLap:px-0 smLap:w-10/12 laptop:w-9/12 m-auto">
-                {/* Desktop Menu */}
-                <div className="hidden md:flex space-x-6">
-                  {menuItems.map((menu, index) => (
-                    <div key={index} className="relative group z-50">
-                      <button
-                        className="hover:bg-secondary/30 rounded-md px-3 py-2"
-                        onClick={() => nav(menu.path)}
-                      >
-                        <SmallText
-                          color={`white uppercase`}
-                          font={`font-semibold tracking-wider`}
-                        >
-                          {menu.name}
-                        </SmallText>
-                      </button>
-                    </div>
-                  ))}
                 </div>
-
-                {/* Mobile Menu Button */}
+              )}
+              <div className="hidden md:flex space-x-6">
+                {menuItems.map((menu, index) => (
+                  <div key={index} className="relative group z-50">
+                    <button
+                      className="hover:bg-secondary/30 rounded-md px-3 py-2"
+                      onClick={() => nav(menu.path)}
+                    >
+                      <SmallText
+                        color={`primary uppercase`}
+                        font={`font-semibold tracking-wider`}
+                        padding={"py-0"}
+                      >
+                        {menu.name}
+                      </SmallText>
+                    </button>
+                  </div>
+                ))}
               </div>
+
+              {/* Mobile Menu Button */}
             </div>
           </div>
         </div>
@@ -230,7 +313,7 @@ const Header = () => {
         <div
           className={`tab:hidden flex items-center justify-between px-2 shadow-md py-2 ${
             stickyMenu
-              ? "fixed shadow-md w-full bg-white z-50 mt-0"
+              ? "fixed shadow-md top-0 w-full bg-white z-50"
               : "-top-[65px] mt-2"
           } transition-top duration-500 ease-in-out`}
         >
@@ -255,21 +338,25 @@ const Header = () => {
               </svg>
             </button>
           </div>
-          <img src={Logo} alt="logo" />
+          <img src={Logo} alt="logo" className="h-[50px]" />
           {!user.isLoggedIn && (
-            <button className="flex items-center gap-2 uppercase px-6 py-2 bg-secondary rounded-md">
+            <button
+              onClick={() => nav("auth/login")}
+              className="flex items-center gap-2 uppercase px-6 py-2 bg-headerColor rounded-md"
+            >
               <Text font={`font-semibold `} color={`white`}>
                 login
               </Text>
               <FiLogIn className="text-white text-xl" />
             </button>
           )}
+
           {user.isLoggedIn && (
             <div className="relative">
               <div
                 onClick={handleMobileProfileOpen}
                 ref={mobileProfileRef}
-                className="relative flex items-center gap-2 cursor-pointer border border-gray-300 rounded-md p-1 hover hover:bg-secondary/20"
+                className="flex items-center gap-2 cursor-pointer  rounded-md p-1 hover hover:bg-secondary/20"
               >
                 <img
                   src={user.profileImage}
@@ -282,7 +369,7 @@ const Header = () => {
                 {isMobileProfileOpen && (
                   <div className="p-2 absolute z-10 top-12 right-0 bg-white border border-primary rounded-md w-max">
                     <div
-                      onClick={() => nav(`/`)}
+                      onClick={() => nav(`/user/dashboard`)}
                       className="flex gap-2 items-center p-1 hover:bg-secondary transition-all duration-200 rounded-md cursor-pointer  "
                     >
                       <LuLayoutDashboard className="text-primary text-xl" />
@@ -295,7 +382,7 @@ const Header = () => {
                       </Text>
                     </div>
                     <div
-                      onClick={() => nav(`/`)}
+                      onClick={() => nav(`/user/profile`)}
                       className="flex gap-2 items-center p-1 hover:bg-secondary/10 transition-all duration-200 rounded-md cursor-pointer  my-2"
                     >
                       <CgProfile className="text-primary text-xl" />
@@ -327,7 +414,11 @@ const Header = () => {
           )}
         </div>
         {isMobileMenuOpen && (
-          <div className="tab:hidden mt-2 sm:pt-4 pr-6 space-y-2 border-b-2 border-primary fixed top-[65px] w-1/2 h-screen bg-white z-50">
+          <div
+            className={`tab:hidden pt-2 sm:pt-4 pl-2 pr-6 space-y-2 border-b-2 border-primary fixed z-50 ${
+              stickyMenu ? "top-[60px]" : "top-[80px]"
+            } w-1/2 h-screen bg-white`}
+          >
             {menuItems.map((menu, index) => (
               <div key={index} className="space-y-1">
                 {/* Toggle only sub-menu open/close on mobile */}
